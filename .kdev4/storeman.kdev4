@@ -1,0 +1,15 @@
+[Buildset]
+BuildItems=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x01\x00\x00\x00\x0b\x00\x00\x00\x00\x01\x00\x00\x00\x10\x00s\x00t\x00o\x00r\x00e\x00m\x00a\x00n)
+
+[QMake_Builder]
+Build_Folder=/home/an_owl/source/storeman/build
+Build_Type=0
+Extra_Arguments=
+Install_Prefix=
+QMake_Binary=/usr/bin/qmake
+
+[QMake_Builder][/home/an_owl/source/storeman/build]
+Build_Type=0
+Extra_Arguments=
+Install_Prefix=
+QMake_Binary=/usr/bin/qmake
