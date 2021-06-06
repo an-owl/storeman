@@ -7,6 +7,8 @@
 #include <QString>
 #include <getopt.h>
 #include <QMessageBox>
+#include <QStringList>
+#include <QSqlQuery>
 
 
 class database{

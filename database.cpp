@@ -1,13 +1,14 @@
 /*TODO
  *error check database files
- *initalize database if empty. check if empty by checking if relevant tables exist
  *copy dbfile to bakfile
  *hash files and save hashes
 */
 
-
+#define DEFAULTTABLE "storestable"
 
 #include "database.hpp"
+
+
 
 database::database(int argc, char **argv){
 
@@ -48,12 +49,24 @@ database::database(int argc, char **argv){
     db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName(dbfile);
     if (!db.open()){
-        qFatal("Failed to open Database");
+        qCritical("Failed to open Database");
     }
     else
         qDebug() << "sucssfully opened" << dbfile;
 
+    QStringList tables = db.tables();
+
+    qDebug() << "Current table list" << tables;
+    if (tables.indexOf(DEFAULTTABLE) == -1){
+        QSqlQuery initdb;
+        initdb.prepare("CREATE TABlE " DEFAULTTABLE " (id int,name char,pwdhashsha512 blob,item char,qty int,date int,authorised char,returned int,pwdhashmd5,hidden bool,condition char,comments char);");
+        if (initdb.exec() == false){
+            qCritical("failed to initalize database");
+        }
+
+    }
 }
+
 
 
 database::~database(){
