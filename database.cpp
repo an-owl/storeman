@@ -4,8 +4,9 @@
  *hash files and save hashes
 */
 
-#define DEFAULTTABLE "storestable"
 
+
+#include "stddef.hpp"
 #include "database.hpp"
 
 
@@ -60,13 +61,33 @@ database::database(int argc, char **argv){
     if (tables.indexOf(DEFAULTTABLE) == -1){
         QSqlQuery initdb;
         initdb.prepare("CREATE TABlE " DEFAULTTABLE " (id int,name char,pwdhashsha512 blob,item char,qty int,date int,authorised char,returned int,pwdhashmd5,hidden bool,condition char,comments char);");
-        if (initdb.exec() == false){
+        if (initdb.exec() == false)
             qCritical("failed to initalize database");
-        }
+
 
     }
 }
 
+int database::getall(){
+    //fills mian table with all enteries (default state)
+    QSqlQuery query("SELECT id,name,item,qty,date,authorised,returned FROM " DEFAULTTABLE " WHERE hidden = FALSE;");
+    qDebug() << "getall error:" << query.lastError();
+
+    int y = 0;
+    while(query.next())
+    //iterates through query rows sends whole record to mainwindow
+    {
+        QStringList record;
+        for (int x = 0;x < DEFCOLS; x++){
+            record << query.value(x).toString();
+        }
+        qDebug() << "sending" << record;
+        mwhandle->insertRecord(y,record);
+        y++;
+    }
+
+    return 0;
+}
 
 
 database::~database(){

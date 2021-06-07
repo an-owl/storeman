@@ -3,6 +3,7 @@
 
 
 #include "mainwindow.h"
+#include "database.hpp"
 #include <QSqlDatabase>
 #include <QApplication>
 #include <QMessageBox>
@@ -16,6 +17,9 @@ int main(int argc, char *argv[])
     MainWindow w;
 
     database db(argc,argv);
+    w.dbhandle = &db;
+    db.mwhandle = &w;
+    w.loadDefaultTable();
 
 
     //renders window

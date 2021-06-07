@@ -18,7 +18,8 @@ SOURCES += \
 
 HEADERS += \
     database.hpp \
-    mainwindow.h
+    mainwindow.h \
+    stddef.hpp
 
 FORMS += \
     mainwindow.ui

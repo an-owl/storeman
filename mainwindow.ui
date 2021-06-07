@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>634</width>
-    <height>563</height>
+    <width>734</width>
+    <height>536</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,12 +23,20 @@
       <property name="enabled">
        <bool>true</bool>
       </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
       <property name="verticalScrollBarPolicy">
        <enum>Qt::ScrollBarAlwaysOn</enum>
       </property>
       <attribute name="verticalHeaderVisible">
        <bool>false</bool>
       </attribute>
+      <column>
+       <property name="text">
+        <string>ID</string>
+       </property>
+      </column>
       <column>
        <property name="text">
         <string>Name</string>
@@ -68,7 +76,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>634</width>
+     <width>734</width>
      <height>23</height>
     </rect>
    </property>
