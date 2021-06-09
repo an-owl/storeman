@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QTableWidgetItem>
 #include "database.hpp"
+#include <qstringlist.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -23,6 +24,10 @@ public:
     void loadDefaultTable();
     void insertRecord(int x,QStringList record);
     void settablegeometry(int x,int y);
+    void insertdata(QStringList* record);
+
+private slots:
+    void on_actionAdd_triggered();
 
 private:
     Ui::MainWindow *ui;

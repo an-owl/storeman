@@ -89,6 +89,56 @@ int database::getall(){
     return 0;
 }
 
+bool database::insertdata(QStringList data)
+//inserts a single record in the database
+{
+    //converts incoming data to usable query
+    QSqlQuery query;
+
+
+
+
+    query.prepare("INSERT INTO" DEFAULTTABLE
+                  "(id,name,item,qty,date,authorised,returned,hidden)"
+                  "VALUES "
+                  "(:id,:name,:passwdhash512,:item,:qty,:date,:authorised,hidden=FALSE);");
+    query.bindValue(":name",data.at(0));
+    query.bindValue(":passwdhash512",data.at(1));
+    query.bindValue(":item",data.at(2));
+    query.bindValue(":qty",data.at(3));
+    query.bindValue(":date",data.at(4));
+    query.bindValue(":authorised",data.at(5));
+    query.bindValue(":id",gettotal());
+    //bindvalues prevents sql injection
+    //add comments and condition
+
+    if (query.exec())
+        return true;
+    else
+    {
+        qWarning("Insert failed query returned");
+        qWarning() << query.lastError();
+        return false;
+    }
+}
+
+int database::gettotal()
+{
+    //gets number of records in table
+    ///returns number of records returns -1 and bitches on error
+    QSqlQuery query;
+    query.setForwardOnly(true);
+    query.prepare("SELECT COUNT(id) FROM" DEFAULTTABLE);
+
+
+    if (query.next()){
+        return (query.value(0).toInt());
+    }
+    else
+        qWarning("Error getting number of records database returned");
+        qWarning() << query.lastError();
+        return -1;
+}
 
 database::~database(){
     db.close();

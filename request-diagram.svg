@@ -33,7 +33,7 @@
      inkscape:pageshadow="2"
      inkscape:zoom="0.7"
      inkscape:cx="322.99948"
-     inkscape:cy="490.98216"
+     inkscape:cy="479.55358"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -160,7 +160,7 @@
          id="tspan884"
          x="105.07738"
          y="68.791664"
-         style="stroke-width:0.264583">callback with single cell data</tspan></text>
+         style="stroke-width:0.264583">callback* with record data</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:6.35px;line-height:1.25;font-family:'Liberation Mono';-inkscape-font-specification:'Liberation Mono';letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
@@ -171,7 +171,7 @@
          id="tspan888"
          x="222.58376"
          y="65.016434"
-         style="stroke-width:0.264583">preprocess  cell</tspan></text>
+         style="stroke-width:0.264583">preprocess  record</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:6.35px;line-height:1.25;font-family:'Liberation Mono';-inkscape-font-specification:'Liberation Mono';letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
@@ -216,6 +216,6 @@
          id="tspan906"
          x="258.15775"
          y="82.776787"
-         style="stroke-width:0.264583">insert cell data</tspan></text>
+         style="stroke-width:0.264583">insert record data</tspan></text>
   </g>
 </svg>

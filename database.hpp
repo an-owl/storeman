@@ -25,9 +25,11 @@ public:
    ~database();
     int getall();
     int getdata();
+    bool insertdata(QStringList data);
 
 private:
     QSqlDatabase db;
+    int gettotal();
 };
 
 

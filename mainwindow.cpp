@@ -1,11 +1,10 @@
 
 #include "stddef.hpp"
 
-
+#include "dialog.h"
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-QString filename;
 MainWindow::MainWindow(QWidget *parent)
 : QMainWindow(parent), ui(new Ui::MainWindow)
 {
@@ -43,5 +42,20 @@ void MainWindow::settablegeometry(int x, int y)
 {
     ui->dbtable->setRowCount(y);
     ui->dbtable->setColumnCount(x);
+}
+
+
+void MainWindow::on_actionAdd_triggered()
+{
+
+    Dialog entrywin(this);
+    entrywin.setModal(true);
+    entrywin.exec();
+}
+
+
+void MainWindow::insertdata(QStringList *record)
+{
+    dbhandle->insertdata(*record);
 }
 

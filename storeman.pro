@@ -12,16 +12,18 @@ CONFIG += c++11
 
 SOURCES += \
     database.cpp \
+    dialog.cpp \
     main.cpp \
-    mainwindow.cpp \
-    #mainwindow.ui
+    mainwindow.cpp
 
 HEADERS += \
     database.hpp \
+    dialog.h \
     mainwindow.h \
     stddef.hpp
 
 FORMS += \
+    dialog.ui \
     mainwindow.ui
 
 TRANSLATIONS += \
