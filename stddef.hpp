@@ -5,5 +5,6 @@
 
 #define DEFCOLS 7
 #define DEFAULTTABLE "storestable"
+#define ITEMFILE "itemfile"
 
 #endif // STDDEF_HPP

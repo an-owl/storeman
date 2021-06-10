@@ -6,7 +6,13 @@
 #include <QCryptographicHash>
 #include <QDialog>
 #include <cstdint>
+#include <QFile>
+#include <QIODevice>
+#include <QTextStream>
+#include <QTableWidgetItem>
+
 #include "mainwindow.h"
+#include "stddef.hpp"
 
 
 class MainWindow;
@@ -37,11 +43,19 @@ private slots:
 
     void on_lineEdit_repeat_editingFinished();
 
+    void on_dialogButtonBox_clicked(QAbstractButton *button);
+
 private:
     Ui::Dialog *ui;
     uint64_t pwdhash;
     bool pwd1done, pwd2done; //stores if passwords have been typed on if both true its allowed to complain
+    QFile itemfile;
+    QStringList items;
+
     int pwdbitch();
+    int datagood();
+
+    void setitemtable();
 };
 
 #endif // DIALOG_H

@@ -2,13 +2,14 @@
  *error check database files
  *copy dbfile to bakfile
  *hash files and save hashes
+ *get numebr if items when saving in dialog
+ *
 */
 
 
 
 #include "stddef.hpp"
 #include "database.hpp"
-
 
 
 database::database(int argc, char **argv){
@@ -135,9 +136,11 @@ int database::gettotal()
         return (query.value(0).toInt());
     }
     else
+    {
         qWarning("Error getting number of records database returned");
         qWarning() << query.lastError();
         return -1;
+    }
 }
 
 database::~database(){

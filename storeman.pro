@@ -30,8 +30,7 @@ TRANSLATIONS += \
     storeman_en_NZ.ts
     ../build-storeman-Desktop-Debug/moc_mainwindow.cpp
 
-OTHER_FILES += \
-    ../build-storeman-Desktop-Debug/ui_mainwindow.h
+
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
