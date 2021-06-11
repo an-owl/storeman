@@ -68,15 +68,6 @@ int Dialog::pwdbitch()
 {
     if (Dialog::pwd1done && Dialog::pwd2done){
         if(!(ui->lineEdit_pass->text() == ui->lineEdit_repeat->text()))
-        /*{
-            //ui->lineEdit_pass->text();
-            QCryptographicHash pwdhash(QCryptographicHash::Sha3_512);
-            QByteArray pwd = ui->lineEdit_pass->text().toLatin1();
-            pwdhash.addData(pwd);
-            ui->pwdout->setText(pwdhash.result().toHex());
-            return 0;
-        }
-        else*/
         {
             ui->pwdout->setText("Passwords dont match");
             return 2;
@@ -214,16 +205,15 @@ void Dialog::on_dialogButtonBox_clicked(QAbstractButton *button)
         if (datagood() == 0){
             qDebug() << "saving data";
 
+
             record.resize(10);
             int current = 0;
             int last = 0;
-            //while ((current = prepareRecord(last)) != last){
 
             while (current != items.length()){
                 current=prepareRecord(last);
                 //save record()
                 record.clear();
-
                 record.resize(10);
                 last = current;
             }
