@@ -98,10 +98,12 @@ bool database::insertdata(QStringList data)
 
 
 
-    query.prepare("INSERT INTO" DEFAULTTABLE
-                  "(id,name,item,qty,date,authorised,returned,condition,comments,hidden)"
+    query.prepare("INSERT INTO " DEFAULTTABLE
+                  " (id,name,pwdhashsha512,item,qty,date,authorised,condition,comments,hidden)"
                   "VALUES "
                   "(:id,:name,:passwdhash512,:item,:qty,:date,:authorised,:condition,:comments,FALSE);");
+
+    query.bindValue(":id",gettotal());
     query.bindValue(":name",data.at(0));
     query.bindValue(":passwdhash512",data.at(1));
     query.bindValue(":item",data.at(2));
@@ -110,12 +112,16 @@ bool database::insertdata(QStringList data)
     query.bindValue(":authorised",data.at(5));
     query.bindValue(":condition",data.at(6));
     query.bindValue(":comments",data.at(7));
-    query.bindValue(":id",gettotal());
+
+
     //bindvalues prevents sql injection
     //add comments and condition
 
     if (query.exec())
+    {
+        qDebug() << "saved successfully";
         return true;
+    }
     else
     {
         qWarning("Insert failed query returned");
@@ -131,10 +137,10 @@ int database::gettotal()
     ///returns number of records returns -1 and bitches on error
     QSqlQuery query;
     query.setForwardOnly(true);
-    query.prepare("SELECT COUNT(id) FROM" DEFAULTTABLE);
+    query.prepare("SELECT COUNT(id) FROM " DEFAULTTABLE";");
+    query.exec();
 
-
-    if (query.next()){
+    if (query.first()){
         return (query.value(0).toInt());
     }
     else

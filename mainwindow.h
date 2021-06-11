@@ -25,6 +25,8 @@ public:
     void insertRecord(int x,QStringList record);
     void settablegeometry(int x,int y);
     void insertdata(QStringList* record);
+public slots:
+    void write_to_db(QStringList *);
 
 private slots:
     void on_actionAdd_triggered();

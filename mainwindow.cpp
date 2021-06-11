@@ -38,6 +38,11 @@ void MainWindow::insertRecord(int y,QStringList record)
     }
 }
 
+void MainWindow::write_to_db(QStringList *record)
+{
+    dbhandle->insertdata(*record);
+}
+
 void MainWindow::settablegeometry(int x, int y)
 {
     ui->dbtable->setRowCount(y);
@@ -52,10 +57,3 @@ void MainWindow::on_actionAdd_triggered()
     entrywin.setModal(true);
     entrywin.exec();
 }
-
-
-void MainWindow::insertdata(QStringList *record)
-{
-    dbhandle->insertdata(*record);
-}
-
