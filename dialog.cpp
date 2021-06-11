@@ -140,7 +140,7 @@ void Dialog::on_lineEdit_repeat_editingFinished()
 }
 
 
-int Dialog::prepareRecord(int at = 0)
+/*int Dialog::prepareRecord(int at = 0)
 //im such a fukcing retard all this QVector shit was so i could pass int's to the db but i have to pass int's as a string anyway >:(
 //process and sorts data to be saved
 {
@@ -155,7 +155,7 @@ int Dialog::prepareRecord(int at = 0)
      * [7] condition
      * [8] comments
      * [8] hidden leave balnk
-     */
+     *\/
 
     //add name
     record[1] = (ui->lineEdit_name->text().toUtf8());
@@ -189,6 +189,30 @@ int Dialog::prepareRecord(int at = 0)
     qDebug() << record;
 
     return ++doagain;
+}*/
+
+int Dialog::prepareRecord(int at)
+{
+    //bundles up entire record into qstringlist
+    record = new QStringList;
+    *record << ui->lineEdit_name->text();
+
+    //hash and add password
+    QCryptographicHash pwdhash(QCryptographicHash::Sha3_512);
+    QByteArray pwd = ui->lineEdit_pass->text().toUtf8();
+    pwdhash.addData(pwd);
+    *record << pwdhash.result().toHex();
+
+
+    *record << items[getitems(at)];
+    *record << QString::number(getitem(getitems(at)));
+    *record << QDateTime::currentDateTime().toString();
+    *record << "$USER";
+    *record << ui->box_condition->toPlainText();
+    *record << ui->box_comments->toPlainText();
+
+    qDebug() << record;
+    return getitems(at);
 }
 
 void Dialog::on_dialogButtonBox_clicked(QAbstractButton *button)
@@ -206,15 +230,13 @@ void Dialog::on_dialogButtonBox_clicked(QAbstractButton *button)
             qDebug() << "saving data";
 
 
-            record.resize(10);
+
             int current = 0;
             int last = 0;
 
             while (current != items.length()){
                 current=prepareRecord(last);
                 //save record()
-                record.clear();
-                record.resize(10);
                 last = current;
             }
         }

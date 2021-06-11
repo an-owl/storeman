@@ -53,7 +53,7 @@ private:
     bool pwd1done, pwd2done; //stores if passwords have been typed on if both true its allowed to complain
     QFile itemfile;
     QStringList items;
-    QVector<QByteArray> record;
+    QStringList *record;
 
 
     int pwdbitch();
