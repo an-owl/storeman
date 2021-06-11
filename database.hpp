@@ -18,7 +18,7 @@ public:
     char *dbfile;
     char *bakfile; //do not operate on only read for error checking only write on exit
     char *hash; //may become redundant stores hash for dbfiles
-    MainWindow *mwhandle; //this thing is fucking wild it sets where all the return values will go because its easier than setting up callbacks
+    MainWindow *mwhandle; //this thing is fucking stupid it sets where all the return values will go because its easier than setting up callbacks
 
 
     database(int argc, char **argv);
