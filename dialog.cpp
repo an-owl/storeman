@@ -121,7 +121,7 @@ int Dialog::getitems(int start)
         if (getitem(i) != 0)
             return i;
     }
-    return -1;
+    return items.length();
 
 }
 
@@ -193,6 +193,9 @@ void Dialog::on_lineEdit_repeat_editingFinished()
 
 int Dialog::prepareRecord(int at)
 {
+    if ((getitems(at)) == items.size())
+        return getitems(at);
+
     //bundles up entire record into qstringlist
     record = new QStringList;
     *record << ui->lineEdit_name->text();
@@ -211,8 +214,8 @@ int Dialog::prepareRecord(int at)
     *record << ui->box_condition->toPlainText();
     *record << ui->box_comments->toPlainText();
 
-    qDebug() << record;
-    return getitems(at);
+    qDebug() << *record;
+    return getitems(at)+1;
 }
 
 void Dialog::on_dialogButtonBox_clicked(QAbstractButton *button)
@@ -237,8 +240,10 @@ void Dialog::on_dialogButtonBox_clicked(QAbstractButton *button)
             while (current != items.length()){
                 current=prepareRecord(last);
                 //save record()
+                mwhandle->write_to_db(record);
                 last = current;
             }
+            close();
         }
         else
             qWarning("Data bad");
