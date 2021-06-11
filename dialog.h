@@ -10,6 +10,8 @@
 #include <QIODevice>
 #include <QTextStream>
 #include <QTableWidgetItem>
+#include <QVector>
+#include <QDateTime>
 
 #include "mainwindow.h"
 #include "stddef.hpp"
@@ -51,9 +53,15 @@ private:
     bool pwd1done, pwd2done; //stores if passwords have been typed on if both true its allowed to complain
     QFile itemfile;
     QStringList items;
+    QVector<QByteArray> record;
+
 
     int pwdbitch();
     int datagood();
+    int getitems(int start = 0);//wrapper for saving
+    int getitem(int y);//acutally gets item values
+    int prepareRecord(int at);
+
 
     void setitemtable();
 };

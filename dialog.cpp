@@ -1,5 +1,8 @@
 #include "dialog.h"
 #include "ui_dialog.h"
+/*TODO
+ * setup autocomplete for names using completer
+*/
 
 Dialog::Dialog(QWidget *parent) :
     QDialog(parent),
@@ -45,8 +48,9 @@ void Dialog::setitemtable()
     }
     for (int i = 0; i < items.length() ;i++)
     {
+        unsigned int zero = 0;
         QTableWidgetItem *cell = new QTableWidgetItem;
-        cell->setData(0,0);
+        cell->setData(0,zero);
         ui->itemtable->setItem(i,1,cell);
     }
 }
@@ -97,9 +101,39 @@ int Dialog::datagood()
 
         status = (pwdbitch() | status);
 
-        //get number of items bust be greater than 1
+        if (getitems() == -1)
+            status = (status | 8);
+
     return status;
 }
+
+
+int Dialog::getitem(int y)
+{
+    int qty;
+    //QVariant qty;
+    QTableWidgetItem *cell;
+    cell = ui->itemtable->item(y,1);
+    qty = cell->data(0).toInt();
+    qDebug() << "at" << y << "got" << qty;
+    return qty;
+
+}
+
+
+int Dialog::getitems(int start)
+//returns number of items set
+//i changed this so many times i will ned to come back and clean it up
+{
+    for (int i = start; i < items.length(); i++)
+    {
+        if (getitem(i) != 0)
+            return i;
+    }
+    return -1;
+
+}
+
 
 void Dialog::on_lineEdit_pass_editingFinished()
 {
@@ -113,6 +147,54 @@ void Dialog::on_lineEdit_repeat_editingFinished()
     Dialog::pwd2done = true;
     pwdbitch();
 }
+
+
+int Dialog::prepareRecord(int at = 0)
+//process and sorts data to be saved
+{
+    /*stores record data in standard fromat
+     * [0] name
+     * [1] passwordhash
+     * [2] item
+     * [3] qty
+     * [4] condition
+     * [5] comments
+     */
+
+    //add name
+    record[0] = (ui->lineEdit_name->text().toUtf8());
+
+    //hash and add password
+    QCryptographicHash pwdhash(QCryptographicHash::Sha3_512);
+    QByteArray pwd = ui->lineEdit_pass->text().toUtf8();
+    pwdhash.addData(pwd);
+    record[1] = pwdhash.result();
+
+    int doagain = getitems(at);
+    //gets item and qty sets return 0 if done
+    record[2] = items[getitems(at)].toUtf8();
+    //this is a bit fucking wierd
+    //(int at) is set to the last item that was read
+    //getitems(at) starts the search from the last item that was read
+    //this returns the value of the next thing to be read
+    //so you call this again with its own return value to get the next thing
+    //if return == items.length() you have reached the end
+    record[3].clear();
+    //record[3].append(sizeof(getitem(getitems(at))),getitems(at));
+    record[3].append(getitem(getitems(at)));
+
+    record[4] = QDateTime::currentDateTime().toString().toUtf8();
+
+    record[5] = "$USER";
+
+    record[6] = ui->box_condition->toPlainText().toUtf8();
+    record[7] = ui->box_comments->toPlainText().toUtf8();
+
+    qDebug() << record;
+
+    return ++doagain;
+}
+
 void Dialog::on_dialogButtonBox_clicked(QAbstractButton *button)
 //called when button is pressed
 {
@@ -124,8 +206,25 @@ void Dialog::on_dialogButtonBox_clicked(QAbstractButton *button)
     }
 
     if ((QPushButton *)button== ui->dialogButtonBox->button(QDialogButtonBox::Save)){
-        qDebug() << "saving data";
+        if (datagood() == 0){
+            qDebug() << "saving data";
 
+            record.resize(8);
+            int current = 0;
+            int last = 0;
+            //while ((current = prepareRecord(last)) != last){
+
+            while (current != items.length()){
+                current=prepareRecord(last);
+                //save record()
+                record.clear();
+
+                record.resize(8);
+                last = current;
+            }
+        }
+        else
+            qWarning("Data bad");
     }
 }
 
