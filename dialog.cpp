@@ -150,45 +150,50 @@ void Dialog::on_lineEdit_repeat_editingFinished()
 
 
 int Dialog::prepareRecord(int at = 0)
+//im such a fukcing retard all this QVector shit was so i could pass int's to the db but i have to pass int's as a string anyway >:(
 //process and sorts data to be saved
 {
     /*stores record data in standard fromat
-     * [0] name
-     * [1] passwordhash
-     * [2] item
-     * [3] qty
-     * [4] condition
-     * [5] comments
+     * [0] id leave balnk here
+     * [1] name
+     * [2] passwordhash
+     * [3] item
+     * [4] qty
+     * [5] time
+     * [6] authorised
+     * [7] condition
+     * [8] comments
+     * [8] hidden leave balnk
      */
 
     //add name
-    record[0] = (ui->lineEdit_name->text().toUtf8());
+    record[1] = (ui->lineEdit_name->text().toUtf8());
 
     //hash and add password
     QCryptographicHash pwdhash(QCryptographicHash::Sha3_512);
     QByteArray pwd = ui->lineEdit_pass->text().toUtf8();
     pwdhash.addData(pwd);
-    record[1] = pwdhash.result();
+    record[2] = pwdhash.result();
 
     int doagain = getitems(at);
     //gets item and qty sets return 0 if done
-    record[2] = items[getitems(at)].toUtf8();
+    record[3] = items[getitems(at)].toUtf8();
     //this is a bit fucking wierd
     //(int at) is set to the last item that was read
     //getitems(at) starts the search from the last item that was read
     //this returns the value of the next thing to be read
     //so you call this again with its own return value to get the next thing
     //if return == items.length() you have reached the end
-    record[3].clear();
-    //record[3].append(sizeof(getitem(getitems(at))),getitems(at));
-    record[3].append(getitem(getitems(at)));
+    record[4].clear();
 
-    record[4] = QDateTime::currentDateTime().toString().toUtf8();
+    record[4].append(getitem(getitems(at)));
 
-    record[5] = "$USER";
+    record[5] = QDateTime::currentDateTime().toString().toUtf8();
 
-    record[6] = ui->box_condition->toPlainText().toUtf8();
-    record[7] = ui->box_comments->toPlainText().toUtf8();
+    record[6] = "$USER";
+
+    record[7] = ui->box_condition->toPlainText().toUtf8();
+    record[8] = ui->box_comments->toPlainText().toUtf8();
 
     qDebug() << record;
 
@@ -209,7 +214,7 @@ void Dialog::on_dialogButtonBox_clicked(QAbstractButton *button)
         if (datagood() == 0){
             qDebug() << "saving data";
 
-            record.resize(8);
+            record.resize(10);
             int current = 0;
             int last = 0;
             //while ((current = prepareRecord(last)) != last){
@@ -219,7 +224,7 @@ void Dialog::on_dialogButtonBox_clicked(QAbstractButton *button)
                 //save record()
                 record.clear();
 
-                record.resize(8);
+                record.resize(10);
                 last = current;
             }
         }
