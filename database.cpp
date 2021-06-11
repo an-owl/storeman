@@ -2,7 +2,6 @@
  *error check database files
  *copy dbfile to bakfile
  *hash files and save hashes
- *get numebr if items when saving in dialog
  *
 */
 
@@ -61,7 +60,7 @@ database::database(int argc, char **argv){
     qDebug() << "Current table list" << tables;
     if (tables.indexOf(DEFAULTTABLE) == -1){
         QSqlQuery initdb;
-        initdb.prepare("CREATE TABlE " DEFAULTTABLE " (id int,name char,pwdhashsha512 blob,item char,qty int,date int,authorised char,returned int,pwdhashmd5,hidden bool,condition char,comments char);");
+        initdb.prepare("CREATE TABlE " DEFAULTTABLE " (id int,name char,pwdhashsha512 blob,item char,qty int,date char,authorised char,returned char,pwdhashmd5,hidden bool,condition char,comments char);");
         if (initdb.exec() == false)
             qCritical("failed to initalize database");
 
