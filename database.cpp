@@ -99,15 +99,17 @@ bool database::insertdata(QStringList data)
 
 
     query.prepare("INSERT INTO" DEFAULTTABLE
-                  "(id,name,item,qty,date,authorised,returned,hidden)"
+                  "(id,name,item,qty,date,authorised,returned,condition,comments,hidden)"
                   "VALUES "
-                  "(:id,:name,:passwdhash512,:item,:qty,:date,:authorised,hidden=FALSE);");
+                  "(:id,:name,:passwdhash512,:item,:qty,:date,:authorised,:condition,:comments,FALSE);");
     query.bindValue(":name",data.at(0));
     query.bindValue(":passwdhash512",data.at(1));
     query.bindValue(":item",data.at(2));
     query.bindValue(":qty",data.at(3));
     query.bindValue(":date",data.at(4));
     query.bindValue(":authorised",data.at(5));
+    query.bindValue(":condition",data.at(6));
+    query.bindValue(":comments",data.at(7));
     query.bindValue(":id",gettotal());
     //bindvalues prevents sql injection
     //add comments and condition
@@ -125,6 +127,7 @@ bool database::insertdata(QStringList data)
 int database::gettotal()
 {
     //gets number of records in table
+    //can be used to get next id number
     ///returns number of records returns -1 and bitches on error
     QSqlQuery query;
     query.setForwardOnly(true);
