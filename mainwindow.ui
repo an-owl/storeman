@@ -32,6 +32,9 @@
       <property name="editTriggers">
        <set>QAbstractItemView::NoEditTriggers</set>
       </property>
+      <property name="selectionBehavior">
+       <enum>QAbstractItemView::SelectRows</enum>
+      </property>
       <attribute name="verticalHeaderVisible">
        <bool>false</bool>
       </attribute>
@@ -96,6 +99,7 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionAdd"/>
+   <addaction name="actioninspect"/>
    <addaction name="separator"/>
   </widget>
   <action name="actionAdd">
@@ -107,6 +111,14 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+A</string>
+   </property>
+  </action>
+  <action name="actioninspect">
+   <property name="text">
+    <string>inspect</string>
+   </property>
+   <property name="toolTip">
+    <string>inspect selected record</string>
    </property>
   </action>
  </widget>
