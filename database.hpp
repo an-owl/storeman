@@ -26,6 +26,8 @@ public:
     int getall();
     int getdata();
     bool insertdata(QStringList data);
+    QStringList getFullRecord(int id);
+
 
 private:
     QSqlDatabase db;

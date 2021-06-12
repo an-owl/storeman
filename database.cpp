@@ -151,6 +151,51 @@ int database::gettotal()
     }
 }
 
+QStringList database::getFullRecord(int id)
+/*takes id as argument returns full record as qstringlist
+ *[0] id
+ *[1] name
+ *[2] pwdhashsha512
+ *[3] item
+ *[4] qty
+ *[5] date
+ *[6] authorised
+ *[7] returned
+ *[8] pwdhashmd5
+ *[9] hidden
+ *[10] condition
+ *[11] comments
+ */
+{
+#define FIELDS 12
+    QStringList result;
+    QSqlQuery query;
+    query.setForwardOnly(true);
+    query.prepare("SELECT "
+                  "id, name, pwdhashsha512, item, qty, date, authorised, returned, pwdhashmd5, hidden, condition, comments"
+                  //update fields if you touch this
+                  "FROM " DEFAULTTABLE
+                  " WHERE id = :id");
+    query.bindValue(":id",id);
+    //error checks query
+    //if good then do stuff
+    //else gib error
+    if (query.exec()){
+        query.first();
+        for (int i = 0; i > FIELDS;i++)
+        {
+            result << query.value(i).toString();
+        }
+    }
+    else{
+        qWarning("failed get record");
+        qWarning() << query.lastError();
+    }
+    qDebug() << result;
+    return result;
+#undef FIELDS
+}
+
 database::~database(){
     db.close();
 }
