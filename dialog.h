@@ -32,8 +32,7 @@ public:
 
     explicit Dialog(QWidget *parent = nullptr);
     ~Dialog();
-    void on_buttonBox_accepted();
-
+    void setinspect(QStringList record);
 
 private slots:
     /*void on_buttonBox_clicked(QAbstractButton *button);
@@ -54,7 +53,7 @@ private:
     QFile itemfile;
     QStringList items;
     QStringList *record;
-
+    int id; //stores id of current record used while inspecting
 
     int pwdbitch();
     int datagood();

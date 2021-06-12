@@ -5,6 +5,7 @@
 #include <QTableWidgetItem>
 #include "database.hpp"
 #include <qstringlist.h>
+#include <QItemSelectionModel>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -30,6 +31,8 @@ public slots:
 
 private slots:
     void on_actionAdd_triggered();
+
+    void on_actioninspect_triggered();
 
 private:
     Ui::MainWindow *ui;

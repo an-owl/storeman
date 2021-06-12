@@ -126,6 +126,69 @@ int Dialog::getitems(int start)
 }
 
 
+void Dialog::setinspect(QStringList record)
+//sets up dialog window for inspecting record
+//a bit hackey make better in future
+{
+    /*
+    *record.at() refrence list
+    *[0] id
+    *[1] name
+    *[2] pwdhashsha512
+    *[3] item
+    *[4] qty
+    *[5] date
+    *[6] authorised
+    *[7] returned
+    *[8] pwdhashmd5
+    *[9] hidden
+    *[10] condition
+    *[11] comments
+    */
+
+    //It's a Surprise Tool That Will Help Us Later
+    this->id = record.at(0).toUInt();
+
+    //sets text in editboxes
+    ui->lineEdit_name->setText(record.at(1));
+    ui->lineEdit_pass->setText(record.at(5));
+    ui->lineEdit_repeat->setText(record.at(7));
+    ui->box_condition->setPlainText(record.at(10));
+    ui->box_comments->setPlainText(record.at(11));
+
+    //sets line edits to read only to display data and not change it
+    ui->lineEdit_name->setReadOnly(true);
+    ui->lineEdit_pass->setReadOnly(true);
+    ui->lineEdit_repeat->setReadOnly(true);
+
+    //changes labels to reflect their contents
+    ui->label_pass->setText("Date");
+    ui->label_repeat->setText("Returned");
+
+    //set table data keys
+    //this may not be the best way to do this
+    QTableWidgetItem *auth = new QTableWidgetItem("Authorised",0);
+    QTableWidgetItem *item = new QTableWidgetItem("Item",0);
+    QTableWidgetItem *qty  = new QTableWidgetItem("Qty",0);
+    //set table data
+    QTableWidgetItem *authval = new QTableWidgetItem(record.at(6),0);
+    QTableWidgetItem *itemval = new QTableWidgetItem(record.at(3),0);
+    QTableWidgetItem *qtyval  = new QTableWidgetItem(record.at(4),0);
+
+    //clears tableand sets new contents
+    ui->itemtable->clear();
+    ui->itemtable->horizontalHeader()->hide();
+    ui->itemtable->setRowCount(3);
+    ui->itemtable->setItem(0,0,auth);
+    ui->itemtable->setItem(0,1,authval);
+    ui->itemtable->setItem(1,0,item);
+    ui->itemtable->setItem(1,1,itemval);
+    ui->itemtable->setItem(2,0,qty);
+    ui->itemtable->setItem(2,1,qtyval);
+
+}
+
+
 void Dialog::on_lineEdit_pass_editingFinished()
 {
     Dialog::pwd1done = true;
@@ -144,7 +207,7 @@ void Dialog::on_lineEdit_repeat_editingFinished()
 //im such a fukcing retard all this QVector shit was so i could pass int's to the db but i have to pass int's as a string anyway >:(
 //process and sorts data to be saved
 {
-    /*stores record data in standard fromat
+    *stores record data in standard fromat
      * [0] id leave balnk here
      * [1] name
      * [2] passwordhash
