@@ -174,7 +174,7 @@ QStringList database::getFullRecord(int id)
     query.prepare("SELECT "
                   "id, name, pwdhashsha512, item, qty, date, authorised, returned, pwdhashmd5, hidden, condition, comments"
                   //update fields if you touch this
-                  "FROM " DEFAULTTABLE
+                  " FROM " DEFAULTTABLE
                   " WHERE id = :id");
     query.bindValue(":id",id);
     //error checks query
@@ -182,13 +182,14 @@ QStringList database::getFullRecord(int id)
     //else gib error
     if (query.exec()){
         query.first();
-        for (int i = 0; i > FIELDS;i++)
+        for (int i = 0; i < FIELDS;i++)
         {
             result << query.value(i).toString();
         }
+        qDebug() << "get record good";
     }
     else{
-        qWarning("failed get record");
+        qWarning("get record bad");
         qWarning() << query.lastError();
     }
     qDebug() << result;
