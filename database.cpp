@@ -68,10 +68,19 @@ database::database(int argc, char **argv){
     }
 }
 
-int database::getall(){
+int database::getall(bool ishidden)
+{
     //fills mian table with all enteries (default state)
-    QSqlQuery query("SELECT id,name,item,qty,date,authorised,returned FROM " DEFAULTTABLE " WHERE hidden = FALSE;");
-    qDebug() << "getall error:" << query.lastError();
+    QSqlQuery query;
+    //if ishidden is true returns hidden TRUE && FALSE otherwise ust returns where hidden is FASLE
+    if (ishidden == false)
+        query.prepare("SELECT id,name,item,qty,date,authorised,returned FROM " DEFAULTTABLE " WHERE hidden = FALSE;");
+
+    else
+        query.prepare("SELECT id,name,item,qty,date,authorised,returned FROM " DEFAULTTABLE ";");
+
+    if (!query.exec())
+        qDebug() << "getall error:" << query.lastError();
 
     int y = 0;
     while(query.next())
