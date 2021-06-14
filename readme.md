@@ -17,3 +17,15 @@ atleast one option needs to be set `-h "path to database"` if there is none ther
 a file called itemfile must be placed in the working directory with all items avalable listed on seperate lines.
 
 ### To do 
+- [ ] setup autocomplete for names using completer
+- [ ] implliment hash check for db file
+- [ ] hash files and save hashes
+- [ ] copy dbfile to bakfile
+- [ ] error check database files
+- [ ] update mainwindow on change
+- [ ] add icons
+- [ ] add help
+- [ ] add link to github repo in about
+- [ ] hide / unhude buttons
+- [ ] show hidden utton
+- [ ] fix save button in dialog
