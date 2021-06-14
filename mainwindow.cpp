@@ -21,6 +21,7 @@ void MainWindow::loadDefaultTable()
 {
     //dbhandle->mwhandle = this;
     dbhandle->getall();
+
 }
 void MainWindow::insertRecord(int y,QStringList record)
 //this seems like a memory leak waiting to happen
@@ -52,10 +53,11 @@ void MainWindow::settablegeometry(int x, int y)
 
 void MainWindow::on_actionAdd_triggered()
 {
-
     Dialog entrywin(this);
     entrywin.setModal(true);
     entrywin.exec();
+    //refresh();
+    refresh();
 }
 
 void MainWindow::on_actioninspect_triggered()
@@ -70,10 +72,21 @@ void MainWindow::on_actioninspect_triggered()
         inspectwin.setModal(true);
         inspectwin.setinspect(dbhandle->getFullRecord(id));
         inspectwin.exec();
+
     }
     else{
         ui->statusbar->showMessage("no row selected");
     }
 
+}
+
+void MainWindow::refresh()
+//updates mainwindow to reflect current program state
+{
+    //add option to configure hidden state here
+    //idk why without clearContents the nwe rows will not be inserted
+    ui->dbtable->clearContents();
+    ui->dbtable->setRowCount(0);
+    dbhandle->getall();
 }
 
