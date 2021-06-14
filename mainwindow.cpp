@@ -65,9 +65,8 @@ void MainWindow::on_actioninspect_triggered()
     QItemSelectionModel *select =ui->dbtable->selectionModel();
     if (select->hasSelection()){
 
-        int row = select->selectedRows(0)[0].column();//if i fits i sits. gets selected row as int
+        int row = select->selectedRows(0)[0].row();//if i fits i sits. gets selected row as int
         int id = ui->dbtable->item(row,0)->data(0).toUInt(); //gets id from (row id column)
-
         Dialog inspectwin;
         inspectwin.setModal(true);
         inspectwin.setinspect(dbhandle->getFullRecord(id));
@@ -90,3 +89,8 @@ void MainWindow::refresh()
     dbhandle->getall();
 }
 
+void MainWindow::updateRecord(int id, QStringList *record)
+//updates comments and condition of record id
+{
+    dbhandle->update(id, *record);
+}

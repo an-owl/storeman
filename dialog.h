@@ -35,10 +35,6 @@ public:
     void setinspect(QStringList record);
 
 private slots:
-    /*void on_buttonBox_clicked(QAbstractButton *button);
-    void on_buttonBox_rejected();*/
-
-
 
     void on_lineEdit_pass_editingFinished();
 
@@ -53,13 +49,14 @@ private:
     QFile itemfile;
     QStringList items;
     QStringList *record;
-    int id; //stores id of current record used while inspecting
+    int id = -1; //stores id of current record used while inspecting
 
     int pwdbitch();
     int datagood();
     int getitems(int start = 0);//wrapper for saving
     int getitem(int y);//acutally gets item values
     int prepareRecord(int at);
+    void othersave();
 
 
     void setitemtable();

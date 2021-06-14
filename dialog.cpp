@@ -147,7 +147,7 @@ void Dialog::setinspect(QStringList record)
     */
 
     //It's a Surprise Tool That Will Help Us Later
-    this->id = record.at(0).toUInt();
+    id = record.at(0).toUInt();
 
     //sets text in editboxes
     ui->lineEdit_name->setText(record.at(1));
@@ -284,6 +284,7 @@ int Dialog::prepareRecord(int at)
 void Dialog::on_dialogButtonBox_clicked(QAbstractButton *button)
 //called when button is pressed
 {
+
     if ((QPushButton *)button== ui->dialogButtonBox->button(QDialogButtonBox::Discard))
     //closes window and disgards data
     {
@@ -292,6 +293,11 @@ void Dialog::on_dialogButtonBox_clicked(QAbstractButton *button)
     }
 
     if ((QPushButton *)button== ui->dialogButtonBox->button(QDialogButtonBox::Save)){
+        if (id != -1){
+            othersave();
+            close();
+            return;
+        }
         if (datagood() == 0){
             qDebug() << "saving data";
 
@@ -313,3 +319,11 @@ void Dialog::on_dialogButtonBox_clicked(QAbstractButton *button)
     }
 }
 
+void Dialog::othersave()
+//just updates condition and comments
+{
+    record = new QStringList;
+    *record << ui->box_comments->toPlainText();
+    *record << ui->box_condition->toPlainText();
+    mwhandle->updateRecord(id, record);
+}

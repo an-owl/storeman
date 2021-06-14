@@ -209,3 +209,22 @@ QStringList database::getFullRecord(int id)
 database::~database(){
     db.close();
 }
+
+void database::update(int id, QStringList data)
+{
+    QSqlQuery query;
+    query.prepare("UPDATE " DEFAULTTABLE
+                  " SET condition = :condition, comments = :comments"
+                  " WHERE id = :id;");
+    query.bindValue(":condition",data.at(1));
+    query.bindValue(":comments",data.at(0));
+    query.bindValue(":id",id);
+    if (query.exec()){
+        qDebug() << "update successful";
+    }
+    else{
+        qWarning() << "update failed";
+        qWarning() << query.lastError();
+    }
+
+}
