@@ -14,17 +14,20 @@ SOURCES += \
     database.cpp \
     dialog.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    return.cpp
 
 HEADERS += \
     database.hpp \
     dialog.h \
     mainwindow.h \
+    return.h \
     stddef.hpp
 
 FORMS += \
     dialog.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    return.ui
 
 TRANSLATIONS += \
     storeman_en_NZ.ts
