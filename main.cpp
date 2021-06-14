@@ -12,7 +12,7 @@
 
 int main(int argc, char *argv[])
 {
-    //creates window class i think, dont touch
+    //creates window object i think, dont touch
     QApplication a(argc, argv);
     MainWindow w;
 
