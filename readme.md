@@ -16,7 +16,7 @@ it requres qt5.14 there are currently no releases avalable however there will be
 atleast one option needs to be set `-h "path to database"` if there is none there one will be created `-b "path to backup"` and `-h path to hash` are not currently implimented and `-h` will likely be removed
 a file called itemfile must be placed in the working directory with all items avalable listed on seperate lines.
 
-### To do 
+## To do 
 - [ ] setup autocomplete for names using completer
 - [ ] implliment hash check for db file
 - [ ] hash files and save hashes
@@ -29,3 +29,14 @@ a file called itemfile must be placed in the working directory with all items av
 - [ ] hide / unhude buttons
 - [ ] show hidden utton
 - [ ] fix save button in dialog
+- [ ] make database child of mainwindow
+- [ ] add search function
+- [ ] add show/hide record button
+- [ ] add return button
+
+### bugs to fix
+- [ ] fix save button in dialog
+
+### things to optimise
+- [ ] updating mainwindow after save
+- [ ] optimise save button
