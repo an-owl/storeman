@@ -104,6 +104,7 @@
    <addaction name="actionAdd"/>
    <addaction name="actioninspect"/>
    <addaction name="separator"/>
+   <addaction name="actionReturn"/>
   </widget>
   <action name="actionAdd">
    <property name="text">
@@ -122,6 +123,17 @@
    </property>
    <property name="toolTip">
     <string>inspect selected record</string>
+   </property>
+  </action>
+  <action name="actionReturn">
+   <property name="text">
+    <string>Return</string>
+   </property>
+   <property name="toolTip">
+    <string>return an item</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
    </property>
   </action>
  </widget>
