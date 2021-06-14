@@ -12,7 +12,7 @@ class Return : public QDialog
     Q_OBJECT
 
 public:
-    explicit Return(QWidget *parent = nullptr);
+    explicit Return(QWidget *parent = nullptr,int id = 0, QString name = "",QString date = "", QByteArray pwdhash = "");
     ~Return();
 
 private:
