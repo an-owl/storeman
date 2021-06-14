@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>405</width>
-    <height>99</height>
+    <width>424</width>
+    <height>168</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,6 +17,34 @@
    <property name="leftMargin">
     <number>31</number>
    </property>
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QRadioButton" name="button_single">
+       <property name="text">
+        <string>Just this one</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QRadioButton" name="button_multiple">
+       <property name="text">
+        <string>Whole batch</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QRadioButton" name="button_all">
+       <property name="text">
+        <string>All for cadet</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
