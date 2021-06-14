@@ -4,6 +4,7 @@
 #include "dialog.h"
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "return.h"
 
 MainWindow::MainWindow(QWidget *parent)
 : QMainWindow(parent), ui(new Ui::MainWindow)
@@ -60,22 +61,32 @@ void MainWindow::on_actionAdd_triggered()
     refresh();
 }
 
-void MainWindow::on_actioninspect_triggered()
+int MainWindow::getid()
+//gets id of selected row
 {
     QItemSelectionModel *select =ui->dbtable->selectionModel();
     if (select->hasSelection()){
-
         int row = select->selectedRows(0)[0].row();//if i fits i sits. gets selected row as int
         int id = ui->dbtable->item(row,0)->data(0).toUInt(); //gets id from (row id column)
+        return id;
+    }
+    else{
+
+        return -1;
+    }
+}
+
+void MainWindow::on_actioninspect_triggered()
+{
+    int id;
+    if ((id = getid()) != -1){
         Dialog inspectwin;
         inspectwin.setModal(true);
         inspectwin.setinspect(dbhandle->getFullRecord(id));
         inspectwin.exec();
-
     }
-    else{
+    else
         ui->statusbar->showMessage("no row selected");
-    }
 
 }
 
@@ -94,3 +105,13 @@ void MainWindow::updateRecord(int id, QStringList *record)
 {
     dbhandle->update(id, *record);
 }
+
+void MainWindow::on_actionReturn_triggered()
+{
+    QStringList record = dbhandle->getFullRecord(getid());
+    Return returnwin(this,record.at(0).toUInt(),record.at(1),record.at(5),record.at(2).toUtf8());
+    returnwin.setModal(true);
+    returnwin.exec();
+
+}
+

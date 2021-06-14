@@ -36,8 +36,12 @@ private slots:
 
     void on_actioninspect_triggered();
 
+    void on_actionReturn_triggered();
+
 private:
     Ui::MainWindow *ui;
     void refresh();
+    int getid();
+
 };
 #endif // MAINWINDOW_H
