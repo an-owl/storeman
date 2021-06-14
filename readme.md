@@ -22,17 +22,18 @@ a file called itemfile must be placed in the working directory with all items av
 - [ ] hash files and save hashes
 - [ ] copy dbfile to bakfile
 - [ ] error check database files
-- [ ] update mainwindow on change
+- [x] update mainwindow on change
 - [ ] add icons
 - [ ] add help
 - [ ] add link to github repo in about
 - [ ] hide / unhude buttons
-- [ ] show hidden utton
+- [ ] show hidden button
 - [ ] fix save button in dialog
 - [ ] make database child of mainwindow
 - [ ] add search function
 - [ ] add show/hide record button
 - [ ] add return button
+- [ ] 
 
 ### bugs to fix
 - [ ] fix save button in dialog
