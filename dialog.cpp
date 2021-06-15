@@ -160,6 +160,8 @@ void Dialog::setinspect(QStringList record)
     ui->lineEdit_name->setReadOnly(true);
     ui->lineEdit_pass->setReadOnly(true);
     ui->lineEdit_repeat->setReadOnly(true);
+    ui->lineEdit_pass  ->setEchoMode(QLineEdit::Normal);
+    ui->lineEdit_repeat->setEchoMode(QLineEdit::Normal);
 
     //changes labels to reflect their contents
     ui->label_pass->setText("Date");
