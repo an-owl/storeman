@@ -41,6 +41,8 @@ private slots:
 
     void on_actionrefresh_triggered();
 
+    void on_MainWindow_destroyed();
+
 private:
     Ui::MainWindow *ui;
     void refresh();

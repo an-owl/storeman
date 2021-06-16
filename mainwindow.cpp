@@ -125,3 +125,9 @@ void MainWindow::on_actionrefresh_triggered()
     refresh();
 }
 
+
+void MainWindow::on_MainWindow_destroyed()
+{
+    dbhandle->~database();
+}
+
