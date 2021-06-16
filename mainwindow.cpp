@@ -108,14 +108,20 @@ void MainWindow::updateRecord(int id, QStringList *record)
 
 void MainWindow::on_actionReturn_triggered()
 {
-    QStringList record = dbhandle->getFullRecord(getid());
-    Return returnwin(this,record.at(0).toUInt(),record.at(1),record.at(5),record.at(2).toUtf8());
-    returnwin.setModal(true);
-    returnwin.exec();
-    refresh();
+        int id;
+        if ((id = getid()) != -1 ){
+            QStringList record = dbhandle->getFullRecord(id);
+            Return returnwin(this,record.at(0).toUInt(),record.at(1),record.at(5),record.at(2).toUtf8());
+            returnwin.setModal(true);
+            returnwin.exec();
+            refresh();
+        }
+        else
+            ui->statusbar->showMessage("no row selected");
 }
 
-void MainWindow::handinRecord(QStringList *record){
+void MainWindow::handinRecord(QStringList *record)
+{
     dbhandle->returnRecord(record);
 }
 
