@@ -206,8 +206,15 @@ QStringList database::getFullRecord(int id)
 #undef FIELDS
 }
 
-database::~database(){
+database::~database()
+{
     db.close();
+    if (bakfile != nullptr){
+        QFile bak(database::bakfile);
+        bak.remove();
+        QFile dbmainfile(database::dbfile);
+        dbmainfile.copy(database::bakfile);
+    }
 }
 
 void database::update(int id, QStringList data)
@@ -228,11 +235,14 @@ void database::update(int id, QStringList data)
     }
 }
 
-void database::returnRecord(QStringList *record){
+void database::returnRecord(QStringList *record)
+{
+    //stores query in string because i couldnt get bindvalue to work on the left side of the condition
     QString querystring = ("UPDATE " DEFAULTTABLE
                            " SET pwdhashmd5 = :pwdmd5, returned = :returned "
                            "WHERE  = :value AND pwdhashsha512 = :pwdsha;");
     querystring.insert(72,record->at(4));
+    //if qerystring is changed AT ALL make sure above line is correct
 
 
     QSqlQuery query;
