@@ -226,5 +226,27 @@ void database::update(int id, QStringList data)
         qWarning() << "update failed";
         qWarning() << query.lastError();
     }
+}
 
+void database::returnRecord(QStringList *record){
+    QString querystring = ("UPDATE " DEFAULTTABLE
+                           " SET pwdhashmd5 = :pwdmd5, returned = :returned "
+                           "WHERE  = :value AND pwdhashsha512 = :pwdsha;");
+    querystring.insert(72,record->at(4));
+
+
+    QSqlQuery query;
+    query.prepare(querystring);
+
+    query.bindValue(":pwdsha",record->at(1));
+    query.bindValue(":pwdmd5",record->at(2));
+    query.bindValue(":returned",record->at(3));
+
+    //if its going to cock up it will be one of these VV
+    //query.bindValue(":condition",record->at(4));
+    query.bindValue(":value",record->at(0));
+    if (query.exec())
+        qDebug() << "recoed closed" << query.numRowsAffected();
+    else
+        qWarning() << "record not closed" << query.lastError();
 }

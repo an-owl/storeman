@@ -2,7 +2,10 @@
 #define RETURN_H
 
 #include <QDialog>
+#include <QCryptographicHash>
+#include "mainwindow.h"
 
+class MainWindow;
 namespace Ui {
 class Return;
 }
@@ -15,6 +18,11 @@ public:
     explicit Return(QWidget *parent = nullptr, int initid = 0, QString initname = "", QString initdate = "", QByteArray initpwdhash = "");
     ~Return();
 
+    MainWindow *mwhandle;
+
+private slots:
+    void on_buttonBox_accepted();
+
 private:
     Ui::Return *ui;
 
@@ -23,6 +31,8 @@ private:
     QString name;
     QString date;
     QByteArray pwdsha;
+    QByteArray hashsha(QString pwd);
+    QByteArray hashmd5(QString pwd);
 
 };
 

@@ -27,6 +27,7 @@ public:
     void settablegeometry(int x,int y);
     void insertdata(QStringList* record);
     void updateRecord(int id, QStringList *record);
+    void handinRecord(QStringList *record);
 
 public slots:
     void write_to_db(QStringList *);

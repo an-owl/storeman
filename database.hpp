@@ -28,7 +28,7 @@ public:
     bool insertdata(QStringList data);
     QStringList getFullRecord(int id);
     void update(int id, QStringList data);
-
+    void returnRecord(QStringList *record);
 
 private:
     QSqlDatabase db;
