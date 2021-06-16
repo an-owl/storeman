@@ -33,7 +33,6 @@ a file called itemfile must be placed in the working directory with all items av
 - [ ] add search function
 - [ ] add show/hide record button
 - [ ] add return button
-- [ ] 
 
 ### bugs to fix
 - [ ] fix save button in dialog
@@ -41,3 +40,5 @@ a file called itemfile must be placed in the working directory with all items av
 ### things to optimise
 - [ ] updating mainwindow after save
 - [ ] optimise save button
+- [ ] make refresh not awful
+- [ ] consolidate update functions
