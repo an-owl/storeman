@@ -105,6 +105,7 @@
    <addaction name="actioninspect"/>
    <addaction name="separator"/>
    <addaction name="actionReturn"/>
+   <addaction name="actionrefresh"/>
   </widget>
   <action name="actionAdd">
    <property name="text">
@@ -134,6 +135,17 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+R</string>
+   </property>
+  </action>
+  <action name="actionrefresh">
+   <property name="text">
+    <string>refresh</string>
+   </property>
+   <property name="toolTip">
+    <string>refresh table</string>
+   </property>
+   <property name="shortcut">
+    <string>F5</string>
    </property>
   </action>
  </widget>

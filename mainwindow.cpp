@@ -119,3 +119,9 @@ void MainWindow::handinRecord(QStringList *record){
     dbhandle->returnRecord(record);
 }
 
+
+void MainWindow::on_actionrefresh_triggered()
+{
+    refresh();
+}
+

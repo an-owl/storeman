@@ -39,6 +39,8 @@ private slots:
 
     void on_actionReturn_triggered();
 
+    void on_actionrefresh_triggered();
+
 private:
     Ui::MainWindow *ui;
     void refresh();
