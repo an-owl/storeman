@@ -26,13 +26,12 @@ a file called itemfile must be placed in the working directory with all items av
 - [ ] add icons
 - [ ] add help
 - [ ] add link to github repo in about
-- [ ] hide / unhude buttons
 - [ ] show hidden button
-- [ ] fix save button in dialog
 - [ ] make database child of mainwindow
 - [ ] add search function
 - [ ] add show/hide record button
 - [X] add return button
+- [ ] make table formating in mainwin and dialog better
 
 ### bugs to fix
 - [ ] fix save button in dialog
