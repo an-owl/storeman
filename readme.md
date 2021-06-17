@@ -34,10 +34,10 @@ a file called itemfile must be placed in the working directory with all items av
 - [ ] make table formating in mainwin and dialog better
 
 ### bugs to fix
-- [ ] fix save button in dialog
+- [X] fix save button in dialog
 
 ### things to optimise
 - [ ] updating mainwindow after save
-- [ ] optimise save button
+- [X] optimise save button
 - [ ] make refresh not awful
 - [ ] consolidate update functions
