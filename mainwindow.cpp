@@ -21,7 +21,7 @@ void MainWindow::loadDefaultTable()
 //setup default table
 {
     //dbhandle->mwhandle = this;
-    dbhandle->getall();
+    dbhandle->getall(false);
 
 }
 void MainWindow::insertRecord(int y,QStringList record)
@@ -31,13 +31,18 @@ void MainWindow::insertRecord(int y,QStringList record)
     qDebug() << "inserting into" << y;
     ui->dbtable->insertRow(y);
     ui->dbtable->setColumnCount(record.size());
-    for(int i = 0;i < record.size();i++)
+    for(int i = 0;i < record.size()-1;i++)//exits loop before reading state of hidden
         //creates pointer to cell sets data and hands it to dbtable (and deletes it(leaks it))
     {
         QTableWidgetItem * cell = new QTableWidgetItem;
         cell->setData(0,record.at(i));
         ui->dbtable->setItem(y,i,cell);
     }
+    if (record.at((record.size()-1)) == "0") //checks against last item in record. -1 because of index starting at 0
+        MainWindow::hidden.append(false);
+    else
+        MainWindow::hidden.append(true);
+
 }
 
 void MainWindow::write_to_db(QStringList *record)
@@ -71,7 +76,6 @@ int MainWindow::getid()
         return id;
     }
     else{
-
         return -1;
     }
 }
@@ -95,9 +99,10 @@ void MainWindow::refresh()
 {
     //add option to configure hidden state here
     //idk why without clearContents the nwe rows will not be inserted
+    hidden.clear();
     ui->dbtable->clearContents();
     ui->dbtable->setRowCount(0);
-    dbhandle->getall();
+    dbhandle->getall(showhidden);
 }
 
 void MainWindow::updateRecord(int id, QStringList *record)
@@ -136,4 +141,30 @@ void MainWindow::on_MainWindow_destroyed()
 {
     dbhandle->~database();
 }
+
+void MainWindow::on_dbtable_cellClicked(int row, int column)
+{
+    if (hidden[row] == true){
+        ui->actionhide->setChecked(true);
+    }
+    else
+        ui->actionhide->setChecked(false);
+}
+
+
+void MainWindow::on_actionshow_all_triggered(bool checked)
+{
+    showhidden = checked;
+    refresh();
+}
+
+
+void MainWindow::on_actionhide_triggered(bool checked)
+{
+        dbhandle->setHidden(getid(),checked);
+        refresh();
+        if (showhidden == false)
+            ui->actionhide->setChecked(false);
+}
+
 

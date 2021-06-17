@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QTableWidgetItem>
+//#include <QVector>
 #include "database.hpp"
 #include <qstringlist.h>
 #include <QItemSelectionModel>
@@ -43,10 +44,18 @@ private slots:
 
     void on_MainWindow_destroyed();
 
+    void on_dbtable_cellClicked(int row, int column);
+
+    void on_actionshow_all_triggered(bool checked);
+
+    void on_actionhide_triggered(bool checked);
+
 private:
     Ui::MainWindow *ui;
     void refresh();
     int getid();
+    QVector<bool> hidden;
+    bool showhidden = false;
 
 };
 #endif // MAINWINDOW_H
