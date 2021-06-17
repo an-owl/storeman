@@ -234,6 +234,21 @@ void database::update(int id, QStringList data)
     }
 }
 
+void database::setHidden(int id, bool hidden)
+//changes the database state of hidden to hidden
+{
+    QSqlQuery query;
+    query.prepare("UPDATE " DEFAULTTABLE
+                  " SET hidden = :hidden"
+                  " WHERE id = :id;");
+    query.bindValue(":hidden",hidden);
+    query.bindValue(":id", id);
+    if (query.exec())
+        qDebug() << "record" << id << "changed to" << hidden;
+    else
+        qWarning() << "record not changed" << query.lastError();
+}
+
 void database::returnRecord(QStringList *record)
 {
     //stores query in string because i couldnt get bindvalue to work on the left side of the condition

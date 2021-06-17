@@ -29,6 +29,7 @@ public:
     QStringList getFullRecord(int id);
     void update(int id, QStringList data);
     void returnRecord(QStringList *record);
+    void setHidden(int id, bool hidden);
 
 private:
     QSqlDatabase db;
