@@ -204,10 +204,43 @@ void Dialog::on_lineEdit_repeat_editingFinished()
     pwdbitch();
 }
 
-
-int Dialog::prepareRecord(int at)
+void Dialog::save()
 {
-    /*stores record data in standard fromat
+    int max_pass = items.size();
+    QStringList *record = new QStringList;
+
+    *record << ui->lineEdit_name->text();
+
+    QCryptographicHash pwdhash(QCryptographicHash::Sha3_512);
+    QByteArray pwd = ui->lineEdit_pass->text().toUtf8();
+    pwdhash.addData(pwd);
+    *record << pwdhash.result().toHex();
+
+    //these are here because i dont want to change the stuff in database.cpp
+    //*record << items[getitems(at)];
+    //*record << QString::number(getitem(getitems(at)));
+    *record << "";
+    *record << "";
+
+    *record << QDateTime::currentDateTime().toString();
+    *record << "$USER";
+    *record << ui->box_condition->toPlainText();
+    *record << ui->box_comments->toPlainText();
+
+    for (int i = 0;i < max_pass; i++ ) {
+        int qty;
+        if ((qty = getitem(i)) != 0){
+            record->replace(3,QString::number(qty));
+            record->replace(2,items.at(i));
+            mwhandle->write_to_db(record);
+
+        }
+    }
+}
+
+/*int Dialog::prepareRecord(int at)
+{
+    *stores record data in standard fromat
      * [0] id leave balnk here
      * [1] name
      * [2] passwordhash
@@ -218,7 +251,7 @@ int Dialog::prepareRecord(int at)
      * [7] condition
      * [8] comments
      * [8] hidden leave balnk
-     */
+     *\/
     if ((getitems(at)) == items.size())
         return getitems(at);
 
@@ -242,7 +275,7 @@ int Dialog::prepareRecord(int at)
 
     qDebug() << *record;
     return getitems(at)+1;
-}
+}*/
 
 void Dialog::on_dialogButtonBox_clicked(QAbstractButton *button)
 //called when button is pressed
@@ -264,9 +297,9 @@ void Dialog::on_dialogButtonBox_clicked(QAbstractButton *button)
         if (datagood() == 0){
             qDebug() << "saving data";
 
+            save();
 
-
-            int current = 0;
+            /*int current = 0;
             int last = 0;
 
             while (current != items.length()){
@@ -275,7 +308,9 @@ void Dialog::on_dialogButtonBox_clicked(QAbstractButton *button)
                 mwhandle->write_to_db(record);
                 last = current;
             }
+            */
             close();
+
         }
         else
             qWarning("Data bad");

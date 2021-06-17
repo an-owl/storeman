@@ -56,6 +56,7 @@ private:
     int getitems(int start = 0);//wrapper for saving
     int getitem(int y);//acutally gets item values
     int prepareRecord(int at);
+    void save();
     void othersave();
 
 
