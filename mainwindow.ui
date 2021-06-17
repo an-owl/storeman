@@ -105,7 +105,11 @@
    <addaction name="actioninspect"/>
    <addaction name="separator"/>
    <addaction name="actionReturn"/>
+   <addaction name="actionhide"/>
+   <addaction name="actionshow_all"/>
+   <addaction name="separator"/>
    <addaction name="actionrefresh"/>
+   <addaction name="separator"/>
   </widget>
   <action name="actionAdd">
    <property name="text">
@@ -146,6 +150,28 @@
    </property>
    <property name="shortcut">
     <string>F5</string>
+   </property>
+  </action>
+  <action name="actionhide">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>hide</string>
+   </property>
+   <property name="toolTip">
+    <string>show or hide record</string>
+   </property>
+  </action>
+  <action name="actionshow_all">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>show all</string>
+   </property>
+   <property name="toolTip">
+    <string>shows/hides records that are hidden</string>
    </property>
   </action>
  </widget>
