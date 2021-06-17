@@ -205,11 +205,9 @@ void Dialog::on_lineEdit_repeat_editingFinished()
 }
 
 
-/*int Dialog::prepareRecord(int at = 0)
-//im such a fukcing retard all this QVector shit was so i could pass int's to the db but i have to pass int's as a string anyway >:(
-//process and sorts data to be saved
+int Dialog::prepareRecord(int at)
 {
-    *stores record data in standard fromat
+    /*stores record data in standard fromat
      * [0] id leave balnk here
      * [1] name
      * [2] passwordhash
@@ -220,44 +218,7 @@ void Dialog::on_lineEdit_repeat_editingFinished()
      * [7] condition
      * [8] comments
      * [8] hidden leave balnk
-     *\/
-
-    //add name
-    record[1] = (ui->lineEdit_name->text().toUtf8());
-
-    //hash and add password
-    QCryptographicHash pwdhash(QCryptographicHash::Sha3_512);
-    QByteArray pwd = ui->lineEdit_pass->text().toUtf8();
-    pwdhash.addData(pwd);
-    record[2] = pwdhash.result();
-
-    int doagain = getitems(at);
-    //gets item and qty sets return 0 if done
-    record[3] = items[getitems(at)].toUtf8();
-    //this is a bit fucking wierd
-    //(int at) is set to the last item that was read
-    //getitems(at) starts the search from the last item that was read
-    //this returns the value of the next thing to be read
-    //so you call this again with its own return value to get the next thing
-    //if return == items.length() you have reached the end
-    record[4].clear();
-
-    record[4].append(getitem(getitems(at)));
-
-    record[5] = QDateTime::currentDateTime().toString().toUtf8();
-
-    record[6] = "$USER";
-
-    record[7] = ui->box_condition->toPlainText().toUtf8();
-    record[8] = ui->box_comments->toPlainText().toUtf8();
-
-    qDebug() << record;
-
-    return ++doagain;
-}*/
-
-int Dialog::prepareRecord(int at)
-{
+     */
     if ((getitems(at)) == items.size())
         return getitems(at);
 
