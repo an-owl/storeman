@@ -32,6 +32,8 @@ a file called itemfile must be placed in the working directory with all items av
 - [X] add show/hide record button
 - [X] add return button
 - [ ] make table formating in mainwin and dialog better
+- [ ] add dialog to ask to autocorrect name if found in different case
+- [ ] get username
 
 ### bugs to fix
 - [X] fix save button in dialog
