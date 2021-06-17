@@ -37,11 +37,11 @@ database::database(int argc, char **argv){
 
 
     //just some debugging help
-    if (dbfile == NULL){
+    if (dbfile == nullptr){
         qFatal("No main db name provided");
         QMessageBox::information(0,"Error","Fatal:No Filename Provided");
     }
-    if (bakfile == NULL){
+    if (bakfile == nullptr){
         qWarning("No backup name provided");
     }
 
@@ -74,10 +74,10 @@ int database::getall(bool ishidden)
     QSqlQuery query;
     //if ishidden is true returns hidden TRUE && FALSE otherwise ust returns where hidden is FASLE
     if (ishidden == false)
-        query.prepare("SELECT id,name,item,qty,date,authorised,returned FROM " DEFAULTTABLE " WHERE hidden = FALSE;");
+        query.prepare("SELECT id,name,item,qty,date,authorised,returned,hidden FROM " DEFAULTTABLE " WHERE hidden = FALSE;");
 
     else
-        query.prepare("SELECT id,name,item,qty,date,authorised,returned FROM " DEFAULTTABLE ";");
+        query.prepare("SELECT id,name,item,qty,date,authorised,returned,hidden FROM " DEFAULTTABLE ";");
 
     if (!query.exec())
         qDebug() << "getall error:" << query.lastError();
@@ -87,14 +87,13 @@ int database::getall(bool ishidden)
     //iterates through query rows sends whole record to mainwindow
     {
         QStringList record;
-        for (int x = 0;x < DEFCOLS; x++){
+        for (int x = 0;x < DEFCOLS+1; x++){ //+1 adds extra loop for hidden state
             record << query.value(x).toString();
         }
         qDebug() << "sending" << record;
         mwhandle->insertRecord(y,record);
         y++;
     }
-
     return 0;
 }
 

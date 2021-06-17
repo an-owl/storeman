@@ -23,7 +23,7 @@ public:
 
     database(int argc, char **argv);
    ~database();
-    int getall(bool ishidden = false);
+    int getall(bool ishidden);
     int getdata();
     bool insertdata(QStringList data);
     QStringList getFullRecord(int id);
