@@ -11,6 +11,7 @@
 #include "database.hpp"
 
 
+
 database::database(int argc, char **argv){
 
     //retrieves database file names
@@ -95,6 +96,29 @@ int database::getall(bool ishidden)
         y++;
     }
     return 0;
+}
+
+QStringList database::getAllNames()
+//gets all names in database where hidden = false and returns without duplicates
+//only false bcause you dont want names that wont be used showing up in results
+{
+    QStringList names;
+    QSqlQuery query;
+    query.prepare("SELECT name FROM " DEFAULTTABLE
+                  " WHERE hidden = FALSE;");
+    if (query.exec()){
+        while (query.next()){
+            names << query.value(0).toString();//im a retard
+        }
+        names.removeDuplicates();
+        qDebug() << "got names" << names;
+        return names;
+
+    }
+    else{
+        qDebug() << "query failed" << query.lastError();
+        return names;
+    }
 }
 
 bool database::insertdata(QStringList data)

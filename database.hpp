@@ -20,7 +20,7 @@ public:
     char *hash = nullptr; //may become redundant stores hash for dbfiles
     MainWindow *mwhandle; //this thing is fucking stupid it sets where all the return values will go because its easier than setting up callbacks
 
-
+    QStringList getAllNames();
     database(int argc, char **argv);
    ~database();
     int getall(bool ishidden);
