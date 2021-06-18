@@ -6,6 +6,7 @@
 //#include <QVector>
 #include "database.hpp"
 #include <qstringlist.h>
+#include <QHeaderView>
 #include <QItemSelectionModel>
 
 QT_BEGIN_NAMESPACE

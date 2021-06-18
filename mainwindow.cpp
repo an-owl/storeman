@@ -10,6 +10,14 @@ MainWindow::MainWindow(QWidget *parent)
 : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->dbtable->horizontalHeader()->setSectionResizeMode(0,QHeaderView::ResizeMode::Fixed);
+    ui->dbtable->setColumnWidth(0,60);
+    ui->dbtable->horizontalHeader()->setSectionResizeMode(1,QHeaderView::ResizeMode::Stretch);
+    ui->dbtable->horizontalHeader()->setSectionResizeMode(2,QHeaderView::ResizeMode::ResizeToContents);
+    ui->dbtable->horizontalHeader()->setSectionResizeMode(3,QHeaderView::ResizeMode::ResizeToContents);
+    ui->dbtable->horizontalHeader()->setSectionResizeMode(4,QHeaderView::ResizeMode::ResizeToContents);
+    ui->dbtable->horizontalHeader()->setSectionResizeMode(5,QHeaderView::ResizeMode::ResizeToContents);
+    ui->dbtable->horizontalHeader()->setSectionResizeMode(6,QHeaderView::ResizeMode::ResizeToContents);
 }
 
 MainWindow::~MainWindow()
@@ -30,7 +38,7 @@ void MainWindow::insertRecord(int y,QStringList record)
 {
     qDebug() << "inserting into" << y;
     ui->dbtable->insertRow(y);
-    ui->dbtable->setColumnCount(record.size());
+    ui->dbtable->setColumnCount(record.size()-1);
     for(int i = 0;i < record.size()-1;i++)//exits loop before reading state of hidden
         //creates pointer to cell sets data and hands it to dbtable (and deletes it(leaks it))
     {
@@ -53,7 +61,7 @@ void MainWindow::write_to_db(QStringList *record)
 void MainWindow::settablegeometry(int x, int y)
 {
     ui->dbtable->setRowCount(y);
-    ui->dbtable->setColumnCount(x);
+    ui->dbtable->setColumnCount(x-1);
 }
 
 
