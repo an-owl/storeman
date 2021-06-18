@@ -47,7 +47,7 @@ void MainWindow::insertRecord(int y,QStringList record)
 
 void MainWindow::write_to_db(QStringList *record)
 {
-    dbhandle->insertdata(*record);
+    dbhandle->insertdata(*record); //if there is a crash on save its this idk why it happens. im afraid of it. (Demons?)
 }
 
 void MainWindow::settablegeometry(int x, int y)

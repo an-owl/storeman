@@ -17,7 +17,7 @@ atleast one option needs to be set `-h "path to database"` if there is none ther
 a file called itemfile must be placed in the working directory with all items avalable listed on seperate lines.
 
 ## To do 
-- [ ] setup autocomplete for names using completer
+- [X] setup autocomplete for names using completer
 - [ ] implliment hash check for db file
 - [ ] hash files and save hashes
 - [X] copy dbfile to bakfile
