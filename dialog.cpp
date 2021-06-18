@@ -4,13 +4,22 @@
  * setup autocomplete for names using completer
 */
 
-Dialog::Dialog(QWidget *parent) :
+Dialog::Dialog(QWidget *parent, QStringList *autocom) :
     QDialog(parent),
     ui(new Ui::Dialog)
 {
     pwd1done = false;
     pwd2done = false;
     ui->setupUi(this);
+
+
+    QCompleter *com;
+    if (autocom != nullptr){
+        com = new QCompleter(*autocom);
+        com->setCaseSensitivity(Qt::CaseInsensitive);
+        ui->lineEdit_name->setCompleter(com);
+
+    }
 
     //opens and reads ITEMFILE toitems to use in intem col of table
     //should contain all possible options for "item" field in database

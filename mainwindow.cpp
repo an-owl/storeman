@@ -59,7 +59,8 @@ void MainWindow::settablegeometry(int x, int y)
 
 void MainWindow::on_actionAdd_triggered()
 {
-    Dialog entrywin(this);
+    QStringList com = dbhandle->getAllNames();
+    Dialog entrywin(this,&com);
     entrywin.setModal(true);
     entrywin.exec();
     //refresh();

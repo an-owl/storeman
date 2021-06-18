@@ -12,6 +12,7 @@
 #include <QTableWidgetItem>
 #include <QVector>
 #include <QDateTime>
+#include <QCompleter>
 
 #include "mainwindow.h"
 #include "stddef.hpp"
@@ -30,7 +31,7 @@ class Dialog : public QDialog
 public:
     MainWindow *mwhandle;
 
-    explicit Dialog(QWidget *parent = nullptr);
+    explicit Dialog(QWidget *parent = nullptr, QStringList *autocom = nullptr);
     ~Dialog();
     void setinspect(QStringList record);
 
