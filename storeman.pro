@@ -15,12 +15,14 @@ SOURCES += \
     dialog.cpp \
     main.cpp \
     mainwindow.cpp \
+    querysearch.cpp \
     return.cpp
 
 HEADERS += \
     database.hpp \
     dialog.h \
     mainwindow.h \
+    querysearch.h \
     return.h \
     stddef.hpp
 
