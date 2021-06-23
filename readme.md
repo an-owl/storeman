@@ -28,7 +28,7 @@ a file called itemfile must be placed in the working directory with all items av
 - [ ] add link to github repo in about
 - [X] show hidden button
 - [ ] make database child of mainwindow
-- [ ] add search function
+- [X] add search function
 - [X] add show/hide record button
 - [X] add return button
 - [X] make table formating in mainwin and dialog better
