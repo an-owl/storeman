@@ -31,6 +31,8 @@ public:
     void returnRecord(QStringList *record);
     void setHidden(int id, bool hidden);
 
+    QString manQuery(QString querytxt);
+
 private:
     QSqlDatabase db;
     int gettotal();

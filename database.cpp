@@ -298,3 +298,27 @@ void database::returnRecord(QStringList *record)
     else
         qWarning() << "record not closed" << query.lastError();
 }
+
+QString database::manQuery(QString querytxt)
+{
+    QSqlQuery query;
+    query.prepare(querytxt);
+    if (!query.exec()){
+        return query.lastError().text();
+    }
+
+    int y = 0;
+    while(query.next())
+    //iterates through query rows sends whole record to mainwindow
+    {
+        QStringList record;
+        for (int x = 0;x < DEFCOLS+1; x++){ //+1 adds extra loop for hidden state
+            record << query.value(x).toString();
+        }
+        qDebug() << "sending" << record;
+        mwhandle->insertRecord(y,record);
+        y++;
+    }
+    return 0;
+
+}
