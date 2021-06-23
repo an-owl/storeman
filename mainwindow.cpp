@@ -177,3 +177,13 @@ void MainWindow::on_actionhide_triggered(bool checked)
 }
 
 
+
+void MainWindow::on_searchButton_clicked()
+{
+    QuerySearch search(ui->search_bar->text(),DEFAULTTABLE);
+    search.exec();
+    ui->dbtable->clearContents();
+    ui->dbtable->setRowCount(0);
+    dbhandle->manQuery(*search.query);
+}
+

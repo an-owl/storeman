@@ -5,6 +5,7 @@
 #include <QTableWidgetItem>
 //#include <QVector>
 #include "database.hpp"
+#include "querysearch.h"
 #include <qstringlist.h>
 #include <QHeaderView>
 #include <QItemSelectionModel>
@@ -50,6 +51,8 @@ private slots:
     void on_actionshow_all_triggered(bool checked);
 
     void on_actionhide_triggered(bool checked);
+
+    void on_searchButton_clicked();
 
 private:
     Ui::MainWindow *ui;
