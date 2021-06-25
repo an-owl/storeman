@@ -18,8 +18,6 @@ a file called itemfile must be placed in the working directory with all items av
 
 ## To do 
 - [X] setup autocomplete for names using completer
-- [ ] implliment hash check for db file
-- [ ] hash files and save hashes
 - [X] copy dbfile to bakfile
 - [ ] error check database files
 - [X] update mainwindow on change
