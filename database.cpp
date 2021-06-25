@@ -18,12 +18,6 @@
 
 */
 
-/*TODO
- *error check database files
- *copy dbfile to bakfile
- *hash files and save hashes
- *
-*/
 
 
 

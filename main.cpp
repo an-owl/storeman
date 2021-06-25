@@ -18,8 +18,7 @@
 
 */
 
-//TODO:
-//implliment hash check
+
 
 
 #include "mainwindow.h"
