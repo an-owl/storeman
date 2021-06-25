@@ -24,8 +24,8 @@ a file called itemfile must be placed in the working directory with all items av
 - [ ] error check database files
 - [X] update mainwindow on change
 - [ ] add icons
-- [ ] add help
-- [ ] add link to github repo in about
+- [X] add help
+- [X] add link to github repo in about
 - [X] show hidden button
 - [ ] make database child of mainwindow
 - [X] add search function

@@ -54,6 +54,10 @@ private slots:
 
     void on_searchButton_clicked();
 
+    void on_actionAbout_triggered();
+
+    void on_actionAcutally_Help_triggered();
+
 private:
     Ui::MainWindow *ui;
     void refresh();
