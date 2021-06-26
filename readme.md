@@ -21,7 +21,7 @@ a file called itemfile must be placed in the working directory with all items av
 - [X] copy dbfile to bakfile
 - [ ] error check database files
 - [X] update mainwindow on change
-- [ ] add icons
+- [X] add icons
 - [X] add help
 - [X] add link to github repo in about
 - [X] show hidden button
