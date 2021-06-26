@@ -144,6 +144,10 @@
    <addaction name="separator"/>
   </widget>
   <action name="actionAdd">
+   <property name="icon">
+    <iconset>
+     <normaloff>rec/add.svg</normaloff>rec/add.svg</iconset>
+   </property>
    <property name="text">
     <string>Add</string>
    </property>
@@ -155,6 +159,10 @@
    </property>
   </action>
   <action name="actioninspect">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/new/prefix1/rec/edit-find.svg</normaloff>:/new/prefix1/rec/edit-find.svg</iconset>
+   </property>
    <property name="text">
     <string>inspect</string>
    </property>
@@ -163,6 +171,10 @@
    </property>
   </action>
   <action name="actionReturn">
+   <property name="icon">
+    <iconset>
+     <normaloff>rec/return.svg</normaloff>rec/return.svg</iconset>
+   </property>
    <property name="text">
     <string>Return</string>
    </property>
@@ -188,6 +200,10 @@
    <property name="checkable">
     <bool>true</bool>
    </property>
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/new/prefix1/rec/view-hidden.svg</normaloff>:/new/prefix1/rec/view-hidden.svg</iconset>
+   </property>
    <property name="text">
     <string>hide</string>
    </property>
@@ -198,6 +214,10 @@
   <action name="actionshow_all">
    <property name="checkable">
     <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/new/prefix1/rec/view-visible.svg</normaloff>:/new/prefix1/rec/view-visible.svg</iconset>
    </property>
    <property name="text">
     <string>show all</string>
@@ -217,6 +237,8 @@
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="icons.qrc"/>
+ </resources>
  <connections/>
 </ui>

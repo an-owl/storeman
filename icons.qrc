@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/new/prefix1">
+        <file>rec/add.svg</file>
+        <file>rec/return.svg</file>
+        <file>rec/view-hidden.svg</file>
+        <file>rec/view-visible.svg</file>
+        <file>rec/edit-find.svg</file>
+    </qresource>
+</RCC>
